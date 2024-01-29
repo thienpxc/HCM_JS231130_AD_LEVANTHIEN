@@ -1,0 +1,38 @@
+.list-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 40px;
+    background-color: rgb(219, 161, 54);
+    .list-header{
+        display: flex;
+        gap: 20px;
+        font-weight: 700;
+        color: wheat;
+        padding-left: 20px;
+
+    }
+    .icon{
+        position: relative;
+        font-size: 30px;
+        color: rgb(227, 199, 199);
+        cursor: pointer;
+        padding-top: 10px;
+        padding-right: 20px;
+    }
+    .cart-count{
+        position: absolute;
+        background-color: rgb(255, 0, 0);
+        color: rgb(20, 224, 41);
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        padding-top: 2px;
+        font-size: 12px;
+        top: 0;
+        right: 0;
+        font-weight: 700;
+        font-size: 20px;
+        
+    }
+}
