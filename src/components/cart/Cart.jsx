@@ -1,5 +1,5 @@
 import React from "react";
-import "./Cart.css";
+import "./cart.css";
 
 const CartTable = (props) => {
   const { cart, setCart } = props;
@@ -22,21 +22,17 @@ const CartTable = (props) => {
     const newCart = cart.filter((item) => item.id !== itemId);
     setCart(newCart);
   };
- const addToCart = (item) => {
-   const existingItemIndex = cart.findIndex(
-     (cartItem) => cartItem.id === item.id
-   );
-
-   if (existingItemIndex !== -1) {
-     const newCart = [...cart];
-     newCart[existingItemIndex].quantity++;
-     setCart(newCart);
-   } else {
-     setCart([...cart, { ...item, quantity: 1 }]);
-   }
- };
-
  
+const calculateTotal = () => {
+  return cart.reduce((total, item) => {
+    const price = parseFloat(item.price.replace(/[đ,]/g, ""));
+    const itemTotal = isNaN(price) ? 0 : price * item.quantity;
+    return total + itemTotal;
+  }, 0);
+};
+
+
+
   return (
     <div className="cart-container">
       <h3>Giỏ hàng</h3>
@@ -62,7 +58,7 @@ const CartTable = (props) => {
                   />
                 </td>
                 <td>{item.product_name}</td>
-                <td>{item.price}</td>
+                <td>{parseFloat(item.price).toLocaleString()}đ</td>
                 <td>
                   <button onClick={() => decreaseQuantity(index)}>-</button>
                   {item.quantity}
@@ -76,6 +72,7 @@ const CartTable = (props) => {
           })}
         </tbody>
       </table>
+      <p className="monny">Tổng tiền: {calculateTotal()} đ</p>
     </div>
   );
 };
